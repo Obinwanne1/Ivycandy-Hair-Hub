@@ -21,6 +21,23 @@ Nav icons are rendered via [Google Material Icons](https://fonts.google.com/icon
 
 ---
 
+## UI & Icons
+
+Navigation icons use [Google Material Icons](https://fonts.google.com/icons) loaded via CSS `@import` — no image files or emoji.
+
+| Element | Icon name |
+|---|---|
+| Dashboard | `dashboard` |
+| AI Reply Assistant | `auto_awesome` |
+| Client Registry | `people` |
+| Lead Tracker | `flag` |
+| Content Calendar | `calendar_month` |
+| Sales Scripts | `description` |
+| Sidebar collapse | `keyboard_double_arrow_left` |
+| Sidebar expand | `keyboard_double_arrow_right` |
+
+---
+
 ## Tech Stack
 
 - **UI** — [Streamlit](https://streamlit.io) (runs in your browser, no server needed)
