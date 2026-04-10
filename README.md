@@ -8,13 +8,14 @@ No website required. Runs entirely on your computer.
 
 ## What It Does
 
-| Feature | Description |
-|---|---|
-| **AI Reply Assistant** | Paste a customer's WhatsApp/DM message → get a professional, sales-focused reply in seconds |
-| **Client Registry** | Store customer details, style preferences, and full order history |
-| **Lead Tracker** | Log social media leads with auto 3-day follow-up reminders |
-| **Content Calendar** | Plan and draft posts for Instagram, TikTok, Facebook, and LinkedIn |
-| **Sales Scripts** | One-click scripts for cold leads, returning customers, and pricing inquiries |
+| Page | Icon | Description |
+|---|---|---|
+| **Dashboard** | 🏠 | Live stat widgets (clients, leads, overdue, posts) + quick AI reply + recent activity grid |
+| **AI Reply Assistant** | ✨ | Paste a customer's WhatsApp/DM message → get a professional, sales-focused reply in seconds |
+| **Client Registry** | 👥 | Store customer details, style preferences, and full order history |
+| **Lead Tracker** | 🎯 | Log social media leads with auto 3-day follow-up reminders and overdue alerts |
+| **Content Calendar** | 📅 | Plan and draft posts for Instagram, TikTok, Facebook, and LinkedIn |
+| **Sales Scripts** | 💬 | One-click scripts for cold leads, returning customers, and pricing inquiries |
 
 ---
 
@@ -112,6 +113,7 @@ Your `.env` and `data/` folder are excluded from git — your data stays on your
 3. Update the AI system prompt in `ai_reply.py` to match the client's brand voice
 4. Change currency symbol (search/replace `€` in `app.py`)
 5. Update `page_title` and `page_icon` in `st.set_page_config()`
+6. Update sidebar nav labels in the `NAV_OPTIONS` dict in `app.py`
 
 ---
 
