@@ -25,6 +25,7 @@ LOGO_B64 = _img_b64(os.path.join(os.path.dirname(__file__), "assets", "logo.png"
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
 :root {
     --pink:    #d94797;
@@ -259,6 +260,69 @@ div[data-testid="stAlert"] { border-radius: 10px !important; font-family: 'Lora'
 
 /* Push content down so page title isn't clipped */
 .block-container { padding-top: 3.5rem !important; }
+
+/* ── Replace sidebar toggle » with Material Icon ── */
+[data-testid="stSidebarCollapseButton"] button,
+[data-testid="collapsedControl"] button {
+    position: relative !important;
+    color: transparent !important;
+    font-size: 0 !important;
+}
+[data-testid="stSidebarCollapseButton"] button > *,
+[data-testid="collapsedControl"] button > * { display: none !important; }
+[data-testid="stSidebarCollapseButton"] button::after {
+    font-family: 'Material Icons' !important;
+    content: "keyboard_double_arrow_left" !important;
+    font-size: 1.3rem !important;
+    color: var(--midgray) !important;
+    position: absolute !important;
+    top: 50% !important; left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+}
+[data-testid="collapsedControl"] button::after {
+    font-family: 'Material Icons' !important;
+    content: "keyboard_double_arrow_right" !important;
+    font-size: 1.3rem !important;
+    color: var(--midgray) !important;
+    position: absolute !important;
+    top: 50% !important; left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+}
+
+/* ── Sidebar nav icons via Material Icons ── */
+section[data-testid="stSidebar"] [data-testid="stRadio"] label {
+    display: flex !important;
+    align-items: center !important;
+    padding: 0.55rem 0.9rem !important;
+    border-radius: 8px !important;
+    cursor: pointer !important;
+    transition: background 0.15s, color 0.15s !important;
+    color: rgba(255,255,255,0.65) !important;
+    margin: 1px 0 !important;
+}
+section[data-testid="stSidebar"] [data-testid="stRadio"] label:hover {
+    background: rgba(255,255,255,0.07) !important;
+    color: #fff !important;
+}
+section[data-testid="stSidebar"] [data-testid="stRadio"] label::before {
+    font-family: 'Material Icons' !important;
+    font-size: 1.15rem !important;
+    line-height: 1 !important;
+    margin-right: 0.25rem !important;
+    flex-shrink: 0 !important;
+}
+/* Hide the empty radio group label (nth-of-type 1 = collapsed group title) */
+section[data-testid="stSidebar"] [data-testid="stRadio"] label:nth-of-type(1) { display: none !important; }
+section[data-testid="stSidebar"] [data-testid="stRadio"] label:nth-of-type(2)::before { content: "dashboard"; }
+section[data-testid="stSidebar"] [data-testid="stRadio"] label:nth-of-type(3)::before { content: "auto_awesome"; }
+section[data-testid="stSidebar"] [data-testid="stRadio"] label:nth-of-type(4)::before { content: "people"; }
+section[data-testid="stSidebar"] [data-testid="stRadio"] label:nth-of-type(5)::before { content: "flag"; }
+section[data-testid="stSidebar"] [data-testid="stRadio"] label:nth-of-type(6)::before { content: "calendar_month"; }
+section[data-testid="stSidebar"] [data-testid="stRadio"] label:nth-of-type(7)::before { content: "description"; }
+/* Hide radio dot */
+section[data-testid="stSidebar"] [data-testid="stRadio"] [data-baseweb="radio"] > div:first-child {
+    display: none !important;
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -271,21 +335,20 @@ st.sidebar.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
-NAV_OPTIONS = {
-    "🏠  Dashboard":            "Dashboard",
-    "✨  AI Reply Assistant":   "AI Reply Assistant",
-    "👥  Client Registry":      "Client Registry",
-    "🎯  Lead Tracker":         "Lead Tracker",
-    "📅  Content Calendar":     "Content Calendar",
-    "💬  Sales Scripts":        "Sales Scripts",
-}
+NAV_PAGES = [
+    "Dashboard",
+    "AI Reply Assistant",
+    "Client Registry",
+    "Lead Tracker",
+    "Content Calendar",
+    "Sales Scripts",
+]
 
-selected_icon = st.sidebar.radio(
+page = st.sidebar.radio(
     "",
-    list(NAV_OPTIONS.keys()),
+    NAV_PAGES,
     label_visibility="collapsed",
 )
-page = NAV_OPTIONS[selected_icon]
 
 # ── Helpers ────────────────────────────────────────────────
 def page_header(icon, title, caption=""):
