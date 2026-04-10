@@ -38,13 +38,14 @@ st.markdown("""
 html, body, [class*="css"] { font-family: 'Lora', Georgia, serif; }
 h1, h2, h3 { font-family: 'Poppins', Arial, sans-serif !important; font-weight: 700 !important; }
 
+
 /* ── Sidebar ── */
 section[data-testid="stSidebar"] {
     background: linear-gradient(180deg, #2a1f1f 0%, #1a1414 100%) !important;
     border-right: 1px solid var(--border);
     padding-top: 0 !important;
 }
-section[data-testid="stSidebar"] .block-container { padding-top: 1rem; }
+section[data-testid="stSidebar"] .block-container { padding-top: 3rem; }
 section[data-testid="stSidebar"] label,
 section[data-testid="stSidebar"] label p,
 section[data-testid="stSidebar"] label span,
@@ -81,21 +82,17 @@ section[data-testid="stSidebar"] div[data-testid="stMarkdownContainer"] p {
 
 /* ── Page header ── */
 .page-header {
-    display: flex; align-items: center; gap: 0.75rem;
     padding-bottom: 0.75rem;
     border-bottom: 2px solid var(--pink);
     margin-bottom: 1.5rem;
 }
-.page-header .icon {
-    width: 38px; height: 38px;
-    background: linear-gradient(135deg, var(--pink), var(--purple));
-    border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.1rem; flex-shrink: 0;
-    box-shadow: 0 3px 10px rgba(217,71,151,0.35);
+.page-header h1 {
+    font-family: 'Poppins', Arial, sans-serif !important;
+    font-size: 1.75rem !important; font-weight: 700 !important;
+    margin: 0 !important; padding: 0 !important;
+    display: flex; align-items: center; gap: 0.5rem;
 }
-.page-header h1 { margin: 0 !important; padding: 0 !important; font-size: 1.75rem !important; }
-.page-caption { font-size: 0.85rem; opacity: 0.6; margin-top: -1.2rem; margin-bottom: 1.5rem; }
+.page-caption { font-size: 0.85rem; opacity: 0.6; margin-top: -1rem; margin-bottom: 1.5rem; }
 
 /* ── MSN-style stat widgets ── */
 .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 1.75rem; }
@@ -260,8 +257,8 @@ div[data-testid="stAlert"] { border-radius: 10px !important; font-family: 'Lora'
 ::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-thumb { background: rgba(128,128,128,0.3); border-radius: 4px; }
 
-/* Reduce default Streamlit top padding */
-.block-container { padding-top: 2rem !important; }
+/* Push content down so page title isn't clipped */
+.block-container { padding-top: 3.5rem !important; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -274,18 +271,27 @@ st.sidebar.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
-page = st.sidebar.radio(
+NAV_OPTIONS = {
+    "🏠  Dashboard":            "Dashboard",
+    "✨  AI Reply Assistant":   "AI Reply Assistant",
+    "👥  Client Registry":      "Client Registry",
+    "🎯  Lead Tracker":         "Lead Tracker",
+    "📅  Content Calendar":     "Content Calendar",
+    "💬  Sales Scripts":        "Sales Scripts",
+}
+
+selected_icon = st.sidebar.radio(
     "",
-    ["Dashboard", "AI Reply Assistant", "Client Registry", "Lead Tracker", "Content Calendar", "Sales Scripts"],
+    list(NAV_OPTIONS.keys()),
     label_visibility="collapsed",
 )
+page = NAV_OPTIONS[selected_icon]
 
 # ── Helpers ────────────────────────────────────────────────
 def page_header(icon, title, caption=""):
     st.markdown(f"""
     <div class="page-header">
-        <div class="icon">{icon}</div>
-        <h1 style="font-family:Poppins,Arial,sans-serif;font-weight:700;font-size:1.75rem;margin:0;">{title}</h1>
+        <h1>{icon} {title}</h1>
     </div>
     """, unsafe_allow_html=True)
     if caption:
