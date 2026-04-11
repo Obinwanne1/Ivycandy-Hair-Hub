@@ -345,7 +345,7 @@ NAV_PAGES = [
 ]
 
 page = st.sidebar.radio(
-    "",
+    "Navigation",
     NAV_PAGES,
     label_visibility="collapsed",
 )
