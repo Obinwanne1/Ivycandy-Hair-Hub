@@ -3,6 +3,8 @@ import os
 
 DB_PATH = os.path.join(os.path.dirname(__file__), "data", "business.db")
 
+os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
+
 
 def get_conn():
     conn = sqlite3.connect(DB_PATH)
