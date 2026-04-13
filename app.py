@@ -698,5 +698,5 @@ elif page == "Sales Scripts":
                 st.error(f"API error: {e}")
     if "last_script" in st.session_state:
         st.markdown('<div class="card"><div class="card-label">Your Script</div>', unsafe_allow_html=True)
-        st.text_area("", value=st.session_state["last_script"], height=300, key="script_out")
+        st.text_area("Script output", value=st.session_state["last_script"], height=300, key="script_out", label_visibility="collapsed")
         st.markdown('</div>', unsafe_allow_html=True)

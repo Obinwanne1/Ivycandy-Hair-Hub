@@ -84,10 +84,13 @@ Ivycandy-Hair-Hub/
 ├── db.py                   # SQLite — all read/write operations
 ├── ai_reply.py             # Claude API — reply generation + sales scripts
 ├── requirements.txt        # Python dependencies
+├── SKILL.md                # AI features guide (Reply Assistant, Sales Scripts)
 ├── .streamlit/
 │   └── config.toml         # Streamlit server config
 ├── assets/
 │   └── logo.png            # Brand logo (committed)
+├── .planning/
+│   └── codebase/           # Codebase map (architecture, stack, conventions)
 ├── .env                    # API key — local only, never committed
 └── data/                   # SQLite database file — never committed
 ```
